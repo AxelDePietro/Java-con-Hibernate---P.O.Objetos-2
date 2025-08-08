@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.Ticket" table="ticket">
+
+		<id column="idTicket" name="idTicket">
+			<generator class="identity"></generator>
+		</id>
+
+		<property name="titulo" column="titulo" type="string"></property>
+		<property name="descripcion" column="descripcion" type="string"></property>
+		<property name="fechaCreacion" column="FechaCreacion" type="java.time.LocalDateTime"></property>
+		<property name="fechaCierre" column="FechaCierre" type="java.time.LocalDateTime"></property>
+
+		<many-to-one name="estado" class="datos.Estado" column="estado_idEstado" not-null="true" />
+		<many-to-one name="prioridad" class="datos.Prioridad" column="prioridad_idPrioridad" not-null="true" />
+		<many-to-one name="categoria" class="datos.Categoria" column="categoria_idCategoria" not-null="true" />
+        <many-to-one name="cliente" class="datos.Cliente" column="cliente_usuario_idUsuario"/>
+
+		<set name="lstActualizaciones" table="actualizacion" order-by="idActualizacion asc" inverse="true"
+            lazy="true" fetch="select"  cascade="all-delete-orphan">
+            <key column="ticket_idTicket" not-null="true"></key>
+            <one-to-many class="datos.Actualizacion" />
+        </set>
+
+	</class>
+</hibernate-mapping>

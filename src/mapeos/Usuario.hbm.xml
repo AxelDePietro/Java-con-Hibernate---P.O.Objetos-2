@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.Usuario" table="usuario">
+		<id column="idUsuario" name="idUsuario">
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="nombre" column="nombre" type="string"></property>
+		<property name="apellido" column="apellido" type="string"></property>
+		<property name="dni" column="dni" type="int"></property>
+		
+		<one-to-one name="contacto" class="datos.Contacto" cascade="all"></one-to-one>
+
+		<joined-subclass name="datos.Cliente" table="cliente">
+			<key column="usuario_idUsuario"></key>
+			<property name="nroCliente" column="nroCliente" type="int"></property>
+		</joined-subclass>
+
+		<joined-subclass name="datos.Empleado" table="empleado">
+			<key column="usuario_idUsuario"></key>
+			<property name="rol" column="rol" type="string"></property>
+			<property name="legajo" column="legajo" type="string"></property>
+		</joined-subclass>
+
+
+	</class>
+</hibernate-mapping>

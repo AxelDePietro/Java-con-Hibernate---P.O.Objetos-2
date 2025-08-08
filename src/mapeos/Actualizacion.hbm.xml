@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Actualizacion" table="actualizacion">
+		<id column="idActualizacion" name="idActualizacion">
+			<generator class="identity" />
+		</id>
+		<property column="contenido" name="contenido" type="string" />
+		<property column="fechaActualizacion" name="fechaActualizacion" type="java.time.LocalDateTime" />
+		<many-to-one name="empleado" class="datos.Empleado" column="empleado_usuario_idUsuario" not-null="true" />
+		<many-to-one name="ticket" class="datos.Ticket" column="ticket_idTicket" not-null="true" />
+		
+	</class>
+</hibernate-mapping>

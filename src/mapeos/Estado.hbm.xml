@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "../hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Estado" table="estado">
+	
+		<id column="idEstado" name="idEstado">
+			<generator class="identity" />
+		</id>
+		
+		<property column="tipo" name="tipo" type="string" />
+		
+	
+		
+	</class>
+</hibernate-mapping>
